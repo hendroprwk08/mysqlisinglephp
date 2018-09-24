@@ -19,7 +19,26 @@ if (empty($_REQUEST['submit'])){ //jika tombol submit tak ada yang ditekan
 			<input type='radio' name='status' value='Magang'>Magang</br>
 			<input type='radio' name='status' value='Kontrak'>Kontrak</br>
 			<input type='radio' name='status' value='Tetap'>Tetap</br>
-			<p><input type='submit' name='submit' value='Simpan'/></p>
+			Divisi:</br>
+			<select name='divisi'>";
+			
+			//menggunakan option yang berasal dari table
+			$sql = "select * from divisi";
+			$res = 	$mysqli->query($sql);
+			while($obj = $res->fetch_assoc()){
+				$view .= "<option value='$obj[id_divisi]'>$obj[divisi]</option>";
+			}			
+		$view .= "</select></br>
+			Jabatan:</br>
+			<select name='jabatan'>";
+			
+			$sql = "select * from jabatan";
+			$res = 	$mysqli->query($sql);
+			while($obj = $res->fetch_assoc()){
+				$view .= "<option value='$obj[id_jabatan]'>$obj[jabatan]</option>";
+			}
+			
+		$view.="</select><p><input type='submit' name='submit' value='Simpan'/></p>
 			</form>
 			<table border='1'>
 				<tr><th>Nama</th><th>Alamat</th><th>Status</th><th>&nbsp;</th></tr>";
@@ -37,10 +56,10 @@ if (empty($_REQUEST['submit'])){ //jika tombol submit tak ada yang ditekan
 				
 }elseif($_REQUEST['submit'] == "Simpan"){	
 	//simpan 
-	$sql = "insert into karyawan (nama, alamat, usia, kelamin, status) 
+	$sql = "insert into karyawan (nama, alamat, usia, kelamin, status, id_divisi, id_jabatan) 
 			values( '".$_REQUEST['nama']."','".$_REQUEST['alamat']."', 
 			".$_REQUEST['usia'].", '".$_REQUEST['kelamin']."', 
-			'".$_REQUEST['status']."')";	
+			'".$_REQUEST['status']."', ".$_REQUEST['divisi'].", ".$_REQUEST['jabatan'].")";	
 	
 	if (!$mysqli->query($sql)) {
 		die("<b>Error:</b> ". $mysqli->error);
