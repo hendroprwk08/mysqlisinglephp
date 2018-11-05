@@ -1,4 +1,5 @@
 <?php
+session_start();
 include "database.php";
 
 if (empty($_REQUEST['submit'])){ //jika tombol submit tak ada yang ditekan
@@ -17,10 +18,13 @@ if (empty($_REQUEST['submit'])){ //jika tombol submit tak ada yang ditekan
 	$query = $mysqli->query($sql);
 	$count = $query->num_rows;
 	
-	if($count != 0)	
+	if($count != 0){
+		$_SESSION['username'] = $_REQUEST['username'];	
 		header("location:pegawai.php");	
-	else
-		$view = "data take ditemukan!. <a href='login.php'>coba lagi</a>";
+	}else{
+		$view = "data tak ditemukan!. <a href='login.php'>coba lagi</a>";
+	}
 }
+
 echo $view;
 ?>
