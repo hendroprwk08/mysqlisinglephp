@@ -16,5 +16,6 @@ if($_SESSION['username'] != ""){
         </p>";
 }else{
     die("Akan belum login. <a href='login.php'>silahkan klik disini</a>");
+    //echo "Akan belum login. <a href='login.php'>silahkan klik disini</a>";
 }
 ?>
