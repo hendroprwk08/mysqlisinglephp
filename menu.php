@@ -7,7 +7,7 @@ session_start();
 
 //jika session username ada datanya
 if($_SESSION['username'] != ""){
-    echo "<p>
+    echo "<p>Hai <b>".$_SESSION['username']."</b>&nbsp;&nbsp;
         <a href = 'divisi.php'>Divisi</a> |
         <a href = 'jabatan.php'>Jabatan</a> |
         <a href = 'pegawai.php'>Pegawai</a> |
@@ -16,6 +16,5 @@ if($_SESSION['username'] != ""){
         </p>";
 }else{
     die("Akan belum login. <a href='login.php'>silahkan klik disini</a>");
-    //echo "Akan belum login. <a href='login.php'>silahkan klik disini</a>";
 }
 ?>
